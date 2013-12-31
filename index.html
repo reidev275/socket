@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sockets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>	
+	<div id="newsFeed"></div>
+  </body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+<script>
+  var socket = io.connect('http://localhost:6515');
+  socket.on('news', function (data) {
+	$('#newsFeed').html("<h2>Hello, " + data.hello + "</h2>");
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+</script>
+
+</html>
